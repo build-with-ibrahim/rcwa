@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>RCWA | Roofing Client Web Agency</title>
+    <link rel="shortcut icon" href="RCWA.png" type="image/x-icon">
+    <style>
+        /* ---------- RESET & BASE ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #FFFFFF;
+            color: #111111;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #F5F5F5;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #D32F2F;
+            border-radius: 10px;
+        }
+
+        /* typography */
+        h1 {
+            font-size: 3rem;
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
+            color: #0A0A0A;
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1A1A1A;
+            letter-spacing: -0.01em;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: #1A1A1A;
+        }
+
+        p {
+            font-size: 1.125rem;
+            color: #4A4A4A;
+            margin-bottom: 1rem;
+        }
+
+        /* layout containers */
+        section {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 6rem 2rem;
+        }
+
+        /* navigation */
+        nav {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #FFFFFF;
+            border-bottom: 1px solid #F0F0F0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #D32F2F 0%, #B91C1C 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        /* premium button style */
+        button,
+        .btn {
+            background-color: #D32F2F;
+            color: white;
+            border: none;
+            padding: 0.875rem 2rem;
+            font-size: 0.9375rem;
+            font-weight: 500;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            letter-spacing: -0.01em;
+            font-family: inherit;
+        }
+
+        button:hover,
+        .btn:hover {
+            background-color: #B71C1C;
+            transform: scale(1.02);
+            box-shadow: 0 8px 20px rgba(211, 47, 47, 0.25);
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        button:focus-visible {
+            outline: 2px solid #D32F2F;
+            outline-offset: 2px;
+        }
+
+        /* hero section */
+        #hero {
+            text-align: center;
+            background: linear-gradient(135deg, #FFF9F9 0%, #FFFFFF 100%);
+            border-bottom: 1px solid #F5F5F5;
+        }
+
+        #hero h1 {
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            background: linear-gradient(145deg, #0F172A 0%, #1E293B 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        #hero p {
+            max-width: 700px;
+            margin: 0 auto 2rem auto;
+            font-size: 1.25rem;
+            color: #5A5A5A;
+        }
+
+        /* section headings (all main titles) */
+        #problem h1,
+        #solution h1,
+        #Services h1,
+        #Results h1,
+        #Choose h1,
+        #Portfolio h1,
+        #pricing h1,
+        #about h1,
+        #CTA h1,
+        .testimonials h2,
+        #contact h1 {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        /* point container (checklist) */
+        .point {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .point h2 {
+            margin-bottom: 1.8rem;
+            font-size: 1.6rem;
+            text-align: center;
+            color: #1A1A1A;
+        }
+
+        .point p {
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            padding: 0.5rem 0;
+            color: #2C2C2C;
+        }
+
+        .point p::before {
+            content: "✓";
+            color: #D32F2F;
+            font-weight: 600;
+            font-size: 1.25rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 1.8rem;
+            height: 1.8rem;
+            background: rgba(211, 47, 47, 0.08);
+            border-radius: 30px;
+            flex-shrink: 0;
+        }
+
+        /* solution, services, results cards (soft background) */
+        #solution .point,
+        #Services .point,
+        #Results .point {
+            background: #FCFCFC;
+            padding: 2.5rem;
+            border-radius: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+            border: 1px solid #F0F0F0;
+        }
+
+        /* choose section badge */
+        #Choose p {
+            text-align: center;
+            font-size: 1.25rem;
+            font-weight: 500;
+            background: #FEF2F2;
+            padding: 1.25rem 2rem;
+            border-radius: 100px;
+            max-width: 700px;
+            margin: 0 auto;
+            color: #B91C1C;
+        }
+
+        /* portfolio grid */
+        .list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: #FFFFFF;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+            transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+            border: 1px solid #EFEFEF;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 32px rgba(0, 0, 0, 0.08);
+            border-color: #FFE5E5;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 240px;
+            background: #F8F8F8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .card:hover .card-img img {
+            transform: scale(1.03);
+        }
+
+        .card h1 {
+            font-size: 1.4rem;
+            margin: 3rem 1.5rem 0.75rem;
+            text-align: left;
+            color: #0A0A0A;
+            font-weight: 600;
+        }
+
+        .card button {
+            margin: 0 1.5rem 1.5rem 1.5rem;
+            margin-top: -100px;
+            width: calc(100% - 3rem);
+            background: white;
+            color: #D32F2F;
+            border: 1px solid #FFE0E0;
+            box-shadow: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .card button:hover {
+            background: #D32F2F;
+            color: white;
+            border-color: #D32F2F;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(211, 47, 47, 0.15);
+        }
+
+        /* pricing section */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .pricing-card {
+            background: #FFFFFF;
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+            transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+            border: 1px solid #EFEFEF;
+            text-align: center;
+            position: relative;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 32px rgba(0, 0, 0, 0.08);
+            border-color: #FFE5E5;
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            right: 1.5rem;
+            background: #D32F2F;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.25rem 1rem;
+            border-radius: 40px;
+            letter-spacing: 0.3px;
+            box-shadow: 0 2px 8px rgba(211, 47, 47, 0.2);
+        }
+
+        .pricing-card .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #D32F2F;
+            margin: 1rem 0 0.5rem;
+        }
+
+        .pricing-card .price span {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #6B6B6B;
+        }
+
+        .pricing-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-card .description {
+            color: #5A5A5A;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .pricing-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+
+        .pricing-card ul li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            color: #2C2C2C;
+        }
+
+        .pricing-card ul li::before {
+            content: "✓";
+            color: #D32F2F;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .pricing-card button {
+            width: 100%;
+            margin-top: 0.5rem;
+        }
+
+        /* testimonials section */
+        .testimonials {
+            background: #FEFEFE;
+        }
+
+        .testimonials h2 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        .testimonials .subtext {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #5A5A5A;
+            max-width: 650px;
+            margin: 0 auto 3rem auto;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .testimonial-grid .card {
+            background: #FFFFFF;
+            border-radius: 1.25rem;
+            padding: 1.75rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+            border: 1px solid #F0F0F0;
+            transition: all 0.25s ease;
+        }
+
+        .testimonial-grid .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.05);
+            border-color: #FFE5E5;
+        }
+
+        .testimonial-grid .card p {
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #2C2C2C;
+            margin-bottom: 1.25rem;
+            font-style: normal;
+        }
+
+        .testimonial-grid .card h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #D32F2F;
+            margin-bottom: 0.2rem;
+        }
+
+        .testimonial-grid .card span {
+            font-size: 0.85rem;
+            color: #6B6B6B;
+            display: block;
+        }
+
+        /* about section */
+        #about {
+            background: #FCFCFC;
+            border-radius: 2rem;
+            margin: 1rem auto;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        #about p {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+            color: #4A4A4A;
+        }
+
+        /* CTA section */
+        #CTA {
+            text-align: center;
+            background: linear-gradient(135deg, #FFFFFF 0%, #FFF8F8 100%);
+            border-radius: 2rem;
+            margin: 1rem auto;
+            padding: 4rem 2rem;
+        }
+
+        #CTA button {
+            margin-top: 1.5rem;
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            background: #D32F2F;
+            box-shadow: 0 8px 20px rgba(211, 47, 47, 0.2);
+        }
+
+        /* ========== CONTACT SECTION ========== */
+        #contact {
+            background: #FFFFFF;
+            border-top: 1px solid #F0F0F0;
+            border-bottom: 1px solid #F0F0F0;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .contact-info {
+            background: #FEFAF5;
+            padding: 2rem;
+            border-radius: 1.5rem;
+            border: 1px solid #F5E8E8;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.02);
+        }
+
+        .contact-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.2rem;
+            color: #B71C1C;
+            position: relative;
+            display: inline-block;
+        }
+
+        .contact-info h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 48px;
+            height: 2px;
+            background: #D32F2F;
+            border-radius: 2px;
+        }
+
+        .info-detail {
+            margin: 1.8rem 0;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-icon {
+            font-size: 1.4rem;
+            min-width: 32px;
+            color: #D32F2F;
+        }
+
+        .info-text {
+            flex: 1;
+        }
+
+        .info-text strong {
+            display: block;
+            font-weight: 600;
+            color: #1E1E1E;
+            margin-bottom: 0.2rem;
+        }
+
+        .info-text a,
+        .info-text span {
+            color: #4A4A4A;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .info-text a:hover {
+            color: #D32F2F;
+            text-decoration: underline;
+        }
+
+        .contact-social {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .contact-social a {
+            background: #FFFFFF;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #D32F2F;
+            text-decoration: none;
+            border: 1px solid #FFE0E0;
+            transition: all 0.2s ease;
+        }
+
+        .contact-social a:hover {
+            background: #D32F2F;
+            color: white;
+            border-color: #D32F2F;
+            transform: translateY(-2px);
+        }
+
+        .contact-form {
+            background: #FFFFFF;
+            padding: 2rem;
+            border-radius: 1.5rem;
+            border: 1px solid #EFEFEF;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.02);
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 0.4rem;
+            color: #2C2C2C;
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.9rem 1rem;
+            border-radius: 1rem;
+            border: 1px solid #E2E2E2;
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+            background: white;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #D32F2F;
+            box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.1);
+        }
+
+        .contact-form button {
+            width: 100%;
+            margin-top: 0.5rem;
+            padding: 0.9rem;
+            font-size: 1rem;
+            background: #D32F2F;
+            border: none;
+        }
+
+        .contact-form button:hover {
+            background: #B71C1C;
+            transform: translateY(-2px);
+        }
+
+        /* footer */
+        footer {
+            background: #B71C1C;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 0;
+        }
+
+        footer p {
+            color: #fff;
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        /* focus effects for inputs (if any) */
+        input,
+        textarea {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 1rem;
+            border: 1px solid #E0E0E0;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all 0.2s;
+            background: white;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #D32F2F;
+            box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.1);
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 1100px) {
+            .testimonial-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .pricing-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 1024px) {
+            section {
+                padding: 4rem 2rem;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .list {
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .testimonials h2 {
+                font-size: 2.2rem;
+            }
+
+            .testimonial-grid {
+                gap: 1.5rem;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            button {
+                padding: 0.6rem 1.3rem;
+                font-size: 0.875rem;
+            }
+
+            section {
+                padding: 3rem 1.5rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.4rem;
+            }
+
+            p,
+            .point p {
+                font-size: 1rem;
+            }
+
+            .list {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .card-img {
+                height: 200px;
+            }
+
+            .card h1 {
+                font-size: 1.25rem;
+                margin: 1rem 1rem 0.5rem;
+            }
+
+            .card button {
+                margin: 0 1rem 1.2rem 1rem;
+                width: calc(100% - 2rem);
+            }
+
+            #hero h1 {
+                font-size: 1.8rem;
+            }
+
+            #hero p {
+                font-size: 1rem;
+            }
+
+            .point {
+                padding: 0;
+            }
+
+            #solution .point,
+            #Services .point,
+            #Results .point {
+                padding: 1.5rem;
+            }
+
+            #CTA button,
+            #hero button {
+                width: 100%;
+                max-width: 260px;
+            }
+
+            #Choose p {
+                font-size: 1rem;
+                padding: 0.9rem 1.2rem;
+            }
+
+            .point p::before {
+                width: 1.4rem;
+                height: 1.4rem;
+                font-size: 0.9rem;
+            }
+
+            .testimonials h2 {
+                font-size: 1.9rem;
+            }
+
+            .testimonials .subtext {
+                font-size: 1rem;
+                margin-bottom: 2rem;
+            }
+
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+                gap: 1.25rem;
+            }
+
+            .testimonial-grid .card {
+                padding: 1.5rem;
+            }
+
+            .contact-info,
+            .contact-form {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            section {
+                padding: 2.5rem 1.2rem;
+            }
+
+            h1 {
+                font-size: 1.7rem;
+            }
+
+            .logo {
+                font-size: 1.3rem;
+            }
+
+            nav button {
+                padding: 0.5rem 1rem;
+            }
+
+            .point p {
+                gap: 0.7rem;
+            }
+
+            .testimonial-grid .card p {
+                font-size: 0.95rem;
+            }
+
+            .info-item {
+                gap: 0.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">RCWA</div>
+        <button onclick="window.location.href='pricing.html'">Get Website</button>
+    </nav>
+
+    <section id="hero">
+        <h1>We Build Roofing Websites That Bring You More Calls & Jobs</h1>
+        <p>At Roofing Clients Web Agency (RCWA), we design high-converting websites specifically for roofing companies
+            that want more local leads, more calls, and more booked jobs.</p>
+        <button onclick="window.location.href='pricing.html'">
+            Get Website
+        </button>
+    </section>
+
+    <section id="problem">
+        <h1>Is Your Roofing Brand Losing Jobs?</h1>
+        <div class="point">
+            <h2>Most roofing websites:</h2>
+            <p>Look outdated</p>
+            <p>Load too slowly</p>
+            <p>Don’t show up on Google</p>
+            <p>Fail to convert visitors into calls</p>
+        </div>
+    </section>
+
+    <section id="solution">
+        <h1>We Turn Your Website Into a Lead-Generating Machine</h1>
+        <p style="text-align:center; max-width:680px; margin:0 auto 2rem auto;">We don’t just build websites, We build
+            roofing websites that convert.</p>
+        <div class="point">
+            <p>Turn visitors into calls and quote requests</p>
+            <p>Rank higher on Google for local roofing searches</p>
+            <p>Build trust with homeowners instantly</p>
+        </div>
+    </section>
+
+    <section id="Services">
+        <h1>Our Roofing Website Services</h1>
+        <div class="point">
+            <p>Custom Roofing Website Design</p>
+            <p>Mobile-Optimized & Fast Loading</p>
+            <p>Local SEO Optimization</p>
+            <p>Lead Generation Strategy</p>
+            <p>Conversion-Focused Layouts</p>
+        </div>
+    </section>
+
+    <section id="Results">
+        <h1>What You Can Expect</h1>
+        <div class="point">
+            <h2>With the right website, your roofing business can:</h2>
+            <p>Get more inbound calls</p>
+            <p>Generate consistent leads</p>
+            <p>Stand out from local competitors</p>
+            <p>Close more jobs</p>
+        </div>
+    </section>
+
+    <section id="Choose">
+        <h1>Why Choose RCWA</h1>
+        <p>We specialize only in roofing businesses, not restaurants, not gyms</p>
+    </section>
+
+    <section id="Portfolio">
+        <h1>See Our Work</h1>
+        <div class="list">
+            <div class="card">
+                <div class="card-img">
+                    <img src="https://www.framer.com/creators-assets/_next/image/?url=https%3A%2F%2Fy4pdgnepgswqffpt.public.blob.vercel-storage.com%2Ftemplates%2F50289%2Froofshield-Rj889TBIx1eElJLPmSM1vX1hxZgsAe&w=3840&q=100"
+                        alt="Modern roofing website design preview - RoofShield" loading="lazy">
+                </div>
+                <h1>RoofShield</h1>
+                <button
+                    onclick="window.open('https://roofshield.framer.website/', '_blank', 'noopener,noreferrer')">View</button>
+            </div>
+            <div class="card">
+                <div class="card-img">
+                    <img src="https://www.framer.com/creators-assets/_next/image/?url=https%3A%2F%2Fy4pdgnepgswqffpt.public.blob.vercel-storage.com%2Ftemplates%2F57442%2Froofinity-6bWQtpOmJFnRsUvABhUGx7RkP7PCIs&w=3840&q=100"
+                        alt="Roofing website template - Roofinity" loading="lazy">
+                </div>
+                <h1>Roofinity</h1>
+                <button
+                    onclick="window.open('https://roofinity.framer.website/', '_blank', 'noopener,noreferrer')">View</button>
+            </div>
+            <div class="card">
+                <div class="card-img">
+                    <img src="image.png" alt="Professional roofer website example" loading="lazy">
+                </div>
+                <h1>Roofer</h1>
+                <button
+                    onclick="window.open('https://roofer.framer.website/', '_blank', 'noopener,noreferrer')">View</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING SECTION WITH POPULAR TAG ON PRO -->
+    <section id="pricing">
+        <h1>Simple, Transparent Pricing</h1>
+        <p class="subtext" style="text-align:center; max-width:650px; margin:0 auto 2rem auto;">Choose the plan that
+            fits your business. All websites include modern design, mobile optimization, and lead‑focused layouts.</p>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3>Starter</h3>
+                <div class="price">$50 <span>/ one‑time</span></div>
+                <p class="description">Perfect for new roofers or a simple online presence.</p>
+                <ul>
+                    <li>2‑page website</li>
+                    <li>Mobile‑optimized design</li>
+                    <li>Contact form integration</li>
+                    <li>Fast hosting included</li>
+                </ul>
+                <button onclick="window.location.href='starter.html'">Choose Starter</button>
+            </div>
+            <div class="pricing-card">
+                <div class="popular-badge">POPULAR</div>
+                <h3>Pro</h3>
+                <div class="price">$100 <span>/ one‑time</span></div>
+                <p class="description">Great for growing roofing companies needing more pages.</p>
+                <ul>
+                    <li>5‑page website</li>
+                    <li>Mobile‑optimized design</li>
+                    <li>Contact & quote forms</li>
+                    <li>Local SEO setup</li>
+                    <li>Google Maps integration</li>
+                </ul>
+                <button onclick="window.location.href='pro.html'">Choose Pro</button>
+            </div>
+            <div class="pricing-card">
+                <h3>Enterprise</h3>
+                <div class="price">$1,000 <span>/ one‑time</span></div>
+                <p class="description">Full‑scale solution for established roofing businesses.</p>
+                <ul>
+                    <li>10‑page website</li>
+                    <li>Custom design & branding</li>
+                    <li>Advanced SEO optimization</li>
+                    <li>Blog / project gallery</li>
+                    <li>Priority support & training</li>
+                </ul>
+                <button onclick="window.location.href='enterprise.html'">Choose Enterprise</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <h2>What Our Clients Say</h2>
+        <p class="subtext">
+            We help roofing businesses get more calls and booked jobs. Here’s what they’re saying.
+        </p>
+
+        <div class="testimonial-grid">
+
+            <div class="card">
+                <p>"We started getting leads every week after the new site. Big difference."</p>
+                <h4>Mike Thompson</h4>
+                <span>Roofing Contractor, Texas</span>
+            </div>
+
+            <div class="card">
+                <p>"More quote requests in one month than before. Simple and effective."</p>
+                <h4>Carlos Ramirez</h4>
+                <span>Roofing Business Owner, California</span>
+            </div>
+
+            <div class="card">
+                <p>"Didn’t expect much, but it actually brought in real jobs."</p>
+                <h4>Jason Miller</h4>
+                <span>Roofing Contractor, Florida</span>
+            </div>
+
+            <div class="card">
+                <p>"Our business looks more professional now. Customers noticed."</p>
+                <h4>David Wilson</h4>
+                <span>Roofing Company, New York</span>
+            </div>
+
+            <div class="card">
+                <p>"More calls. That’s all I needed and that’s what I got."</p>
+                <h4>Ryan Cooper</h4>
+                <span>Roofing Services, Ohio</span>
+            </div>
+
+            <div class="card">
+                <p>"Clean design and better leads coming in consistently."</p>
+                <h4>Kevin Brooks</h4>
+                <span>Roofing Contractor, Arizona</span>
+            </div>
+
+            <div class="card">
+                <p>"Before this, our website did nothing. Now it brings business."</p>
+                <h4>Daniel Harris</h4>
+                <span>Roofing Company, Georgia</span>
+            </div>
+
+            <div class="card">
+                <p>"We’re showing up better on Google and getting more inquiries."</p>
+                <h4>Chris Walker</h4>
+                <span>Roofing Contractor, Nevada</span>
+            </div>
+
+            <div class="card">
+                <p>"Process was simple and results were exactly what we needed."</p>
+                <h4>Anthony Scott</h4>
+                <span>Roofing Business, Illinois</span>
+            </div>
+
+            <div class="card">
+                <p>"If your website isn’t getting leads, this will fix it."</p>
+                <h4>Mark Johnson</h4>
+                <span>Roofing Contractor, Colorado</span>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="about">
+        <h1>About Roofing Clients Web Agency (RCWA)</h1>
+        <p>At Roofing Clients Web Agency (RCWA), we help roofing companies get more leads through better websites.
+            Premium design, local SEO, and lead generation strategies that actually work.</p>
+    </section>
+
+    <!-- NEW CONTACT SECTION -->
+    <section id="contact">
+        <h1>Let’s Talk Roofing</h1>
+        <div class="contact-container">
+            <!-- Contact Details -->
+            <div class="contact-info">
+                <h3>Contact Information</h3>
+                <div class="info-detail">
+                    <div class="info-item">
+                        <div class="info-icon">📞</div>
+                        <div class="info-text">
+                            <strong>Phone</strong>
+                            <a href="tel:+15551234567">(555) 123-4567</a>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">✉️</div>
+                        <div class="info-text">
+                            <strong>Email</strong>
+                            <a href="mailto:hello@rcwa.com">hello@rcwa.com</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-social">
+                    <a href="#" aria-label="Facebook">f</a>
+                    <a href="#" aria-label="Instagram">ig</a>
+                    <a href="#" aria-label="LinkedIn">in</a>
+                    <a href="#" aria-label="X">𝕏</a>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form">
+                <h3>Send a Message</h3>
+                <form action="#" method="post">
+                    <div class="form-group">
+                        <label for="name">Full name *</label>
+                        <input type="text" id="name" name="name" required placeholder="John Carter">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email address *</label>
+                        <input type="email" id="email" name="email" required placeholder="hello@roofingco.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="(555) 987-6543">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">How can we help? *</label>
+                        <textarea id="message" name="message" rows="4" required
+                            placeholder="Tell us about your roofing business and goals..."></textarea>
+                    </div>
+                    <button type="submit">Send Message →</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section id="CTA">
+        <h1>Ready to Get More Roofing Leads?</h1>
+        <p>Let’s build a website that works for your business 24/7</p>
+        <button onclick="window.location.href='pricing.html'">
+            Get Website
+        </button>
+    </section>
+
+
+    <footer>
+        <p>© 2026 RCWA. All rights reserved.</p>
+    </footer>
+
+</body>
+
+</html>
