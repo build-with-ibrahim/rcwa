@@ -457,84 +457,59 @@
     </footer>
 
     <script>
-        (function () {
-            const form = document.getElementById('quoteForm');
-            const successDiv = document.getElementById('successMessage');
+const form = document.getElementById('quoteForm');
 
-            function showError(elementId, show) {
-                const err = document.getElementById(elementId);
-                if (err) err.style.display = show ? 'block' : 'none';
-            }
+function showError(id, show) {
+    document.getElementById(id).style.display = show ? 'block' : 'none';
+}
 
-            function validateForm() {
-                let isValid = true;
+function validate() {
+    let valid = true;
 
-                const fullname = document.getElementById('fullname').value.trim();
-                const phone = document.getElementById('phone').value.trim();
-                const email = document.getElementById('email').value.trim();
-                const message = document.getElementById('message').value.trim();
+    const name = fullname.value.trim();
+    const phoneVal = phone.value.trim();
+    const emailVal = email.value.trim();
+    const msg = message.value.trim();
 
-                if (fullname === '') {
-                    showError('nameError', true);
-                    isValid = false;
-                } else {
-                    showError('nameError', false);
-                }
+    if (!name) {
+        showError('nameError', true);
+        valid = false;
+    } else showError('nameError', false);
 
-                const phoneRegex = /^[\d\s\-+()]{5,}$/;
-                if (phone === '' || !phoneRegex.test(phone)) {
-                    showError('phoneError', true);
-                    isValid = false;
-                } else {
-                    showError('phoneError', false);
-                }
+    if (phoneVal.length < 5) {
+        showError('phoneError', true);
+        valid = false;
+    } else showError('phoneError', false);
 
-                const emailRegex = /^[^\s@]+@([^\s@]+\.)+[^\s@]+$/;
-                if (email === '' || !emailRegex.test(email)) {
-                    showError('emailError', true);
-                    isValid = false;
-                } else {
-                    showError('emailError', false);
-                }
+    if (!emailVal.includes('@')) {
+        showError('emailError', true);
+        valid = false;
+    } else showError('emailError', false);
 
-                if (message === '' || message.length < 10) {
-                    showError('messageError', true);
-                    isValid = false;
-                } else {
-                    showError('messageError', false);
-                }
+    if (msg.length < 10) {
+        showError('messageError', true);
+        valid = false;
+    } else showError('messageError', false);
 
-                return isValid;
-            }
+    return valid;
+}
 
-            form.addEventListener('submit', function (e) {
-                e.preventDefault();
+form.addEventListener('submit', function(e) {
 
-                if (validateForm()) {
-                    successDiv.style.display = 'block';
-                    form.reset();
-                    successDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    setTimeout(() => {
-                        successDiv.style.display = 'none';
-                    }, 5000);
-                } else {
-                    const firstError = document.querySelector('.error-message[style*="display: block"]');
-                    if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
-            });
+    if (!validate()) {
+        e.preventDefault();
+        return;
+    }
 
-            ['fullname', 'phone', 'email', 'message'].forEach(id => {
-                const el = document.getElementById(id);
-                if (el) {
-                    el.addEventListener('input', function () {
-                        const errorId = id + 'Error';
-                        showError(errorId, false);
-                        if (id === 'phone') showError('phoneError', false);
-                    });
-                }
-            });
-        })();
-    </script>
+    // combine country code + phone before submit
+    const code = document.getElementById('countryCode').value;
+    const phoneInput = document.getElementById('phone');
+
+    phoneInput.value = code + " " + phoneInput.value;
+
+    // ✅ DO NOT use preventDefault here → form will submit
+});
+</script>
 </body>
 
 </html>
