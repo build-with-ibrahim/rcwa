@@ -397,22 +397,22 @@
                         <input type="text" id="business" name="business" placeholder="Elite Roofing Co.">
                     </div>
 
+                    <!-- Fixed Plan Selector -->
                     <div class="form-group">
-                        <label>Plan *</label>
-                        <div class="phone-group">
-                            <select id="countryCode">
-                                <option value="+59">Enterprise ($599)</option>
-                                <option value="+59">Pro ($199)</option>
-                                <option value="+59">Starter ($59)</option>
-                            </select>
-                        </div>
+                        <label for="plan">Plan *</label>
+                        <select id="plan" name="plan" required>
+                            <option value="Enterprise ($599)">Enterprise ($599)</option>
+                            <option value="Pro ($199)">Pro ($199)</option>
+                            <option value="Starter ($59)">Starter ($59)</option>
+                        </select>
                     </div>
 
+                    <!-- Phone with Country Code -->
                     <div class="form-group">
                         <label>Phone number *</label>
                         <div class="phone-group">
-                            <select id="countryCode">
-                                <!-- Comprehensive list of all countries -->
+                            <select id="countryCodePhone" name="country_code" required>
+                                <!-- Comprehensive list of all countries (same as original) -->
                                 <option value="+1">🇺🇸 United States (+1)</option>
                                 <option value="+1">🇨🇦 Canada (+1)</option>
                                 <option value="+44">🇬🇧 United Kingdom (+44)</option>
@@ -613,6 +613,9 @@
                         <div class="error-message" id="messageError">Please share a few details</div>
                     </div>
 
+                    <!-- Hidden field to combine full phone number -->
+                    <input type="hidden" name="full_phone" id="fullPhone">
+
                     <button type="submit" class="btn-submit">Request Enterprise Consultation →</button>
                     <div class="success-message" id="successMessage">
                         ✅ Thanks! Our Enterprise team will contact you within 24 hours to discuss your custom website.
@@ -625,6 +628,16 @@
     <footer>
         <p>© 2026 Roofing Clients Web Agency (RCWA)</p>
     </footer>
+
+    <script>
+        document.getElementById('enterpriseQuoteForm').addEventListener('submit', function(e) {
+            const countryCode = document.getElementById('countryCodePhone').value;
+            const phone = document.getElementById('phone').value;
+            if (countryCode && phone) {
+                document.getElementById('fullPhone').value = countryCode + ' ' + phone;
+            }
+        });
+    </script>
 </body>
 
 </html>
