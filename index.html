@@ -611,6 +611,26 @@
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.02);
         }
 
+                .form-card {
+            background: #FFFFFF;
+            border-radius: 2rem;
+            padding: 2rem;
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.08);
+            border: 1px solid #F0F0F0;
+        }
+
+        .form-card h2 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-card p {
+            color: #6B6B6B;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+
         .form-group {
             margin-bottom: 1.25rem;
         }
@@ -619,14 +639,15 @@
             display: block;
             font-weight: 500;
             margin-bottom: 0.4rem;
+            font-size: 0.85rem;
             color: #2C2C2C;
-            font-size: 0.9rem;
         }
 
         .form-group input,
+        .form-group select,
         .form-group textarea {
             width: 100%;
-            padding: 0.9rem 1rem;
+            padding: 0.85rem 1rem;
             border-radius: 1rem;
             border: 1px solid #E2E2E2;
             font-family: inherit;
@@ -636,10 +657,65 @@
         }
 
         .form-group input:focus,
+        .form-group select:focus,
         .form-group textarea:focus {
             outline: none;
             border-color: #D32F2F;
             box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.1);
+        }
+
+        .phone-group {
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .phone-group select {
+            width: 140px;
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+
+        .phone-group input {
+            flex: 1;
+        }
+
+        .btn-submit {
+            background-color: #D32F2F;
+            color: white;
+            border: none;
+            padding: 1rem 1.8rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            width: 100%;
+            font-family: inherit;
+            margin-top: 0.5rem;
+        }
+
+        .btn-submit:hover {
+            background-color: #B71C1C;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 20px rgba(211, 47, 47, 0.25);
+        }
+
+        .success-message {
+            background: #E8F5E9;
+            color: #2E7D32;
+            padding: 1rem;
+            border-radius: 1rem;
+            margin-top: 1rem;
+            text-align: center;
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        .error-message {
+            color: #D32F2F;
+            font-size: 0.75rem;
+            margin-top: 0.3rem;
+            display: none;
         }
 
         .contact-form button {
