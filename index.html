@@ -8,7 +8,7 @@
     <meta name="google-site-verification" content="shQyQlCkETFhygjZ-Qx2uEJcpBnkClD9BLxYXk6Emv0" />
     <link rel="shortcut icon" href="RCWA.png" type="image/x-icon">
     <style>
-                /* ========= FIXED COMPARE PLAN SECTION ========= */
+        /* ========= FIXED COMPARE PLAN SECTION ========= */
         .compare-plan {
             margin: 3rem 0 2rem;
             background: #FFFFFF;
@@ -145,7 +145,7 @@
         .demo-btn:active {
             transform: translateY(1px);
         }
-        
+
         /* ---------- RESET & BASE ---------- */
         * {
             margin: 0;
@@ -749,7 +749,7 @@
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.02);
         }
 
-                .form-card {
+        .form-card {
             background: #FFFFFF;
             border-radius: 2rem;
             padding: 2rem;
@@ -929,6 +929,13 @@
             }
         }
 
+        @media (max-width: 950px) {
+            .demo-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+        }
+
         @media (max-width: 900px) {
             .testimonials h2 {
                 font-size: 2.2rem;
@@ -1058,6 +1065,15 @@
             }
         }
 
+        @media (max-width: 650px) {
+            .demo-grid {
+                grid-template-columns: 1fr;
+                max-width: 380px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
         @media (max-width: 480px) {
             section {
                 padding: 2.5rem 1.2rem;
@@ -1086,7 +1102,7 @@
             .info-item {
                 gap: 0.8rem;
             }
-            
+
             .compare-plan {
                 padding: 1.2rem;
             }
