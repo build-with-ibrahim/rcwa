@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -221,6 +220,144 @@
             transform: translateY(0);
         }
 
+        /* ========= FIXED COMPARE PLAN SECTION ========= */
+        .compare-plan {
+            margin: 3rem 0 2rem;
+            background: #FFFFFF;
+            border-radius: 2rem;
+            padding: 2rem 1.5rem;
+            border: 1px solid #F0E9E9;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.02);
+        }
+
+        .compare-plan h2 {
+            font-size: 1.8rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+            color: #0F172A;
+        }
+
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .demo-card {
+            background: #FEFCFC;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid #F5EEEE;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.02);
+        }
+
+        .demo-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 30px -12px rgba(211, 47, 47, 0.15);
+            border-color: #FFD9D9;
+        }
+
+        .demo-img {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #F8F0F0 0%, #FDF8F8 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-bottom: 1px solid #F0E0E0;
+            position: relative;
+        }
+
+        .demo-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+            display: block;
+        }
+
+        .demo-card:hover .demo-img img {
+            transform: scale(1.02);
+        }
+
+        /* fallback if images missing */
+        .demo-img::after {
+            content: "⚡ preview";
+            position: absolute;
+            bottom: 10px;
+            right: 12px;
+            background: rgba(211, 47, 47, 0.75);
+            color: white;
+            font-size: 0.7rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 30px;
+            backdrop-filter: blur(4px);
+            font-weight: 500;
+            pointer-events: none;
+            opacity: 0.8;
+        }
+
+        .demo-card h3 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin: 1rem 1rem 0.5rem 1rem;
+            color: #1E1E2A;
+        }
+
+        .demo-price {
+            font-size: 0.9rem;
+            color: #D32F2F;
+            font-weight: 600;
+            margin: 0 1rem 0.8rem 1rem;
+            letter-spacing: -0.2px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .demo-price span {
+            color: #6F6F6F;
+            font-weight: 400;
+            font-size: 0.8rem;
+        }
+
+        .demo-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            background: transparent;
+            border: 1.5px solid #D32F2F;
+            color: #D32F2F;
+            padding: 0.6rem 1.2rem;
+            margin: 0 1rem 1.2rem 1rem;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            width: calc(100% - 2rem);
+            text-align: center;
+        }
+
+        .demo-btn:hover {
+            background: #D32F2F;
+            color: white;
+            border-color: #D32F2F;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 14px rgba(211, 47, 47, 0.2);
+        }
+
+        .demo-btn:active {
+            transform: translateY(1px);
+        }
+
         /* comparison table section */
         .comparison {
             background: #FEFCFC;
@@ -392,6 +529,10 @@
                 padding: 0.8rem 0.4rem;
                 font-size: 0.8rem;
             }
+
+            .demo-grid {
+                gap: 1.5rem;
+            }
         }
 
         @media (max-width: 800px) {
@@ -424,6 +565,13 @@
             .trust-badge {
                 gap: 0.8rem;
             }
+
+            .demo-grid {
+                grid-template-columns: 1fr;
+                max-width: 420px;
+                margin-left: auto;
+                margin-right: auto;
+            }
         }
 
         @media (max-width: 480px) {
@@ -442,10 +590,17 @@
             .price {
                 font-size: 2rem;
             }
+
+            .compare-plan {
+                padding: 1.2rem;
+            }
+
+            .demo-img {
+                height: 170px;
+            }
         }
     </style>
 </head>
-
 <body>
     <div class="container">
         <div class="header">
@@ -511,23 +666,36 @@
             </div>
         </div>
 
+        <!-- FIXED: Compare Plan by Demo Website (full CSS + structure) -->
         <div class="compare-plan">
-            <h2>Compare Plan by Demo Website</h2>
-            <div class="">
-                <div class="">
-                    <img src="1.png" alt="">
-                    <h1>Starter $59 Website</h1>
-                    <button>View</button>
+            <h2>Compare plans — live demo previews</h2>
+            <div class="demo-grid">
+                <!-- Starter demo card -->
+                <div class="demo-card">
+                    <div class="demo-img">
+                        <img src="1.png" alt="Starter plan demo website preview - modern roofing design">
+                    </div>
+                    <h3>Starter</h3>
+                    <div class="demo-price">$59 <span>one-time</span></div>
+                    <a href="starter-demo.html" class="demo-btn" aria-label="View Starter demo">📱 View Demo →</a>
                 </div>
-                <div class="">
-                    <img src="2.png" alt="">
-                    <h1>Pro $199 Website</h1>
-                    <button>View</button>
+                <!-- Pro demo card -->
+                <div class="demo-card">
+                    <div class="demo-img">
+                        <img src="2.png" alt="Pro plan demo website preview - lead generation optimized">
+                    </div>
+                    <h3>Pro</h3>
+                    <div class="demo-price">$199 <span>one-time</span></div>
+                    <a href="pro-demo.html" class="demo-btn" aria-label="View Pro demo">🔥 View Demo →</a>
                 </div>
-                <div class="">
-                    <img src="3.png" alt="">
-                    <h1>Enterprise $499 Website</h1>
-                    <button>View</button>
+                <!-- Enterprise demo card -->
+                <div class="demo-card">
+                    <div class="demo-img">
+                        <img src="3.png" alt="Enterprise plan demo website - full branding & service areas">
+                    </div>
+                    <h3>Enterprise</h3>
+                    <div class="demo-price">$499 <span>one-time</span></div>
+                    <a href="enterprise-demo.html" class="demo-btn" aria-label="View Enterprise demo">🏆 View Demo →</a>
                 </div>
             </div>
         </div>
@@ -657,5 +825,4 @@
         <p>© 2026 Roofing Clients Web Agency (RCWA)</p>
     </footer>
 </body>
-
 </html>
